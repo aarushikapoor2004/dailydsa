@@ -1,0 +1,37 @@
+// User function Template for javascript
+
+/**
+ * @param {number[]} arr
+ * @param {number} k
+ * @return {number}
+ */
+
+class Solution {
+    kthSmallest(arr, k) {
+     let max = arr[0];
+        for (let i = 0; i < arr.length; i++) { 
+            if (arr[i] > max) {
+                max = arr[i];                
+            }
+        }
+        
+      
+        let count = new Array(max + 1).fill(0);
+        
+        
+        for (let i = 0; i < arr.length; i++) {
+            count[arr[i]]++;
+        }
+        
+        
+        let frequency = 0;
+        for (let i = 0; i <= max; i++) { 
+            frequency += count[i]; 
+            if (frequency >= k) {
+                return i;
+            }
+        }
+        
+        return -1; 
+    }
+}
