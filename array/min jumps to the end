@@ -1,0 +1,27 @@
+class Solution {
+    minJumps(arr) {
+        if (arr.length === 0 || arr[0] === 0) {
+            return -1;  //covering all the edge cases for if first element is 0 then return -1
+        }
+
+        let jumps = 0;    //intialization of variables being used jump to calculate the iterations new_i would i+count and count would be the arr[i]
+        let new_i = 0;    
+        let count = 0;  
+      
+        for (let i = 0; i < arr.length - 1; i++) {
+            count = Math.max(count, i + arr[i]);
+            if (i === new_i) {
+                jumps++;        
+                new_i = count;  
+
+               
+                if (new_i >= arr.length - 1) {
+                    break;
+                }
+            }
+        }
+
+        
+        return (new_i < arr.length - 1) ? -1 : jumps;
+    }
+    }
