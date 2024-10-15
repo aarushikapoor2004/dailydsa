@@ -1,0 +1,20 @@
+
+class Solution {
+    duplicates(a, n) {
+        const frequency = new Array(n).fill(0);//fill is used for initialization of array with zero!!
+        for (let i = 0; i < n; i++) {
+            frequency[a[i]]++; 
+        }
+        const duplicates = [];
+        for (let i = 0; i < n; i++) {
+            if (frequency[i] > 1) {
+                duplicates.push(i);
+            }
+        }
+        if (duplicates.length === 0) {
+            return [-1];
+        } else {
+            return duplicates.sort((a, b) => a - b); 
+        }
+    }
+}
