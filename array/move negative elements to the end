@@ -1,0 +1,27 @@
+
+class Solution {
+    segregateElements(arr) {
+        let n = arr.length;
+        let temp = new Array(n);
+        let j = 0; // index for temp array
+
+        // Store positive elements in temp array
+        for (let i = 0; i < n; i++) {
+            if (arr[i] >= 0) {
+                temp[j++] = arr[i];
+            }
+        }
+
+       
+        for (let i = 0; i < n; i++) {
+            if (arr[i] < 0) {
+                temp[j++] = arr[i];
+            }
+        }
+
+        // Copy contents of temp array back to arr
+        for (let i = 0; i < n; i++) {
+            arr[i] = temp[i];
+        }
+    }
+}
