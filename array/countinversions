@@ -1,0 +1,98 @@
+ * **/
+class Solution {
+    inversionCount(arr) {
+        const n = arr.length;
+
+        // Step 1: Check if the array is sorted
+        if (this.isSorted(arr)) {
+            return 0;
+        }
+        
+        // Step 2: Check if the array is sorted in descending order
+        if (this.isSortedDescending(arr)) {
+            return this.maximumInversions(n);
+        }
+        
+        const tempArr = new Array(n);
+        return this.mergeSortAndCount(arr, tempArr, 0, n - 1); // Count inversions using merge sort
+    }
+    
+    // Helper function to check if the array is sorted in ascending order
+    isSorted(arr) {
+        for (let i = 0; i < arr.length - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Helper function to check if the array is sorted in descending order
+    isSortedDescending(arr) {
+        for (let i = 0; i < arr.length - 1; i++) {
+            if (arr[i] < arr[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Function to calculate maximum inversions
+    maximumInversions(n) {
+        return (n * (n - 1)) / 2;
+    }
+
+    // Function to count inversions using merge sort
+    mergeSortAndCount(arr, tempArr, left, right) {
+        if (left >= right) {
+            return 0; // No inversions if there is 0 or 1 element
+        }
+
+        const mid = Math.floor((left + right) / 2);
+        let invCount = 0;
+
+        // Count inversions in left and right halves
+        invCount += this.mergeSortAndCount(arr, tempArr, left, mid);
+        invCount += this.mergeSortAndCount(arr, tempArr, mid + 1, right);
+
+        // Merge and count inversions
+        invCount += this.merge(arr, tempArr, left, mid, right);
+
+        return invCount;
+    }
+
+    // Merge function to combine two halves and count inversions
+    merge(arr, tempArr, left, mid, right) {
+        let i = left; // Starting index for left subarray
+        let j = mid + 1; // Starting index for right subarray
+        let k = left; // Starting index to be merged
+        let invCount = 0;
+
+        // Merge the two halves and count inversions
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
+                tempArr[k++] = arr[i++];
+            } else {
+                tempArr[k++] = arr[j++];
+                invCount += (mid - i + 1); // Count inversions
+            }
+        }
+
+        // Copy remaining elements of left subarray, if any
+        while (i <= mid) {
+            tempArr[k++] = arr[i++];
+        }
+
+        // Copy remaining elements of right subarray, if any
+        while (j <= right) {
+            tempArr[k++] = arr[j++];
+        }
+
+        // Copy merged elements back to original array
+        for (let index = left; index <= right; index++) {
+            arr[index] = tempArr[index];
+        }
+
+        return invCount;
+    }
+}
