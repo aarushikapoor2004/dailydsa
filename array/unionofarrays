@@ -1,0 +1,13 @@
+class Solution {
+    
+    doUnion(arr1, arr2) {
+        const uniqueElements = new Set();
+        for (let element of arr1) {
+            uniqueElements.add(element);
+        }
+        for (let element of arr2) {
+            uniqueElements.add(element);
+        }
+        return uniqueElements.size;
+    }
+}
