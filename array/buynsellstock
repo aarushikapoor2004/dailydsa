@@ -1,0 +1,37 @@
+class Solution {
+    stockBuySell(A, n) {
+        let buysellprices = [];
+        if (n < 2) {
+            return buysellprices; // Return empty if less than 2 days
+        }
+        
+        let i = 0;
+        while (i < n - 1) {
+            // Find the next buy day
+            while (i < n - 1 && A[i] >= A[i + 1]) {
+                i++;
+            }
+            if (i >= n - 1) break; // If we reach the end, exit the outer loop
+
+            let buy = i; // Store the buy index
+            i++; // Move to the next day for selling
+
+            // Find the next sell day
+            while (i < n - 1 && A[i] <= A[i + 1]) {
+                i++;
+            }
+
+            let sell = i; // Store the sell index
+
+            // Store the buy and sell as a pair
+            buysellprices.push([buy, sell]);
+        }
+        
+        // If no profitable transactions were found, return "No Profit"
+        if (buysellprices.length === 0) {
+            return "No Profit";
+        }
+        
+        return buysellprices; // Return the buy-sell pairs
+    }
+}
