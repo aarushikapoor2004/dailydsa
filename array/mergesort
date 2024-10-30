@@ -1,0 +1,138 @@
+// // length of array <= 1 
+// // apna array is vpis krdo 
+
+// // teen cheeeze chhie 
+// // mid= arraykilenght/2
+// // left = 0 se lekr mid 
+// // right = mid se lekr end tak 
+
+// // mergesortkarenngeleftko(left , 0 , mid);
+// // mergesortkarengerightko(right , mid, end);
+
+// // return karenge(left ,right)
+
+// // function bnyge to merege sort (left,right){
+// //     result = khali array;
+// //     i and j ko krenge declare with 0
+// //     ab merge sort the Code 
+// //     while(i<left ki length se and j < right ki length se){
+// //         if left[i <right[j]]{
+// //             result++ = left[i++]
+// //         }
+// //         else 
+// //         result++ = right(j++)
+// //     }
+// //     remaining elements ko dldo left to the result and same with right 
+// //     return krdo result 
+// // }
+
+// function mergesort(arr){
+//     if(arr.length<=1){
+//         return arr;
+//     }
+//     const mid = Math.floor(arr.length / 2);
+//     const left = arr.slice(0,mid);
+//     const right = arr.slice(mid);
+
+//     const sortedleft = mergesort(left);
+//     const sortedright = mergesort(right);
+
+//     return merge(sortedleft , sortedright);
+// }
+
+// function merge (left,right){
+//     let result = [];
+//     let i = 0 , j = 0;
+//     while(i<left.length && j < right.length){
+//         if(left[i]<right[j]){
+//          result.push(left[i]);
+//          i++;
+//         }
+//         else{
+//             result.push(right[j]);
+//             j++
+//         }
+//     }
+//     result = result.concat(left.slice(i).concat(right.slice(j)));
+//     return result;
+// }
+// const arr = [38, 27, 43, 3, 9, 82, 10];
+// console.log(mergesort(arr));  
+// function findspairofsum0(arr){
+//     const sortedarr = mergesort(arr);
+//     const result = [];
+//     let i = 0;
+//     let j = sortedarr.length-1;
+//     while(left<right){
+//        const sum = sortedarr[i]+sortedarr[j];
+//     }
+//     if(sum === 0) {
+//         result.push([sortedarr[i]],sortedarr[j]);
+//         while(left<right && sortedarr[i]===sortedarr[i+1]);
+//         i++;
+//         while(left<right && sortedarr[j]===sortedarr[j-1]);
+//         j--
+//     }
+//     else if(sum<0){
+//         i++;
+//     }
+//     else{
+//         j--;
+//     }
+//     return result;
+// }
+
+class Solution {
+    mergeSort(arr) {
+        if (arr.length <= 1) {
+            return arr;
+        }
+        const mid = Math.floor(arr.length / 2);
+        const left = arr.slice(0, mid);
+        const right = arr.slice(mid);
+
+        const sortedLeft = this.mergeSort(left);
+        const sortedRight = this.mergeSort(right);
+
+        return this.merge(sortedLeft, sortedRight);
+    }
+    merge(left, right) {
+        let result = [];
+        let i = 0, j = 0;
+        while (i < left.length && j < right.length) {
+            if (left[i] < right[j]) {
+                result.push(left[i]);
+                i++;
+            } else {
+                result.push(right[j]);
+                j++;
+            }
+        }
+        result = result.concat(left.slice(i)).concat(right.slice(j));
+        return result;
+    }
+    getPairs(arr) {
+        const sortedArr = this.mergeSort(arr);
+        const result = [];
+        let left = 0;
+        let right = sortedArr.length - 1;
+
+        while (left < right) {
+            const sum = sortedArr[left] + sortedArr[right];
+
+            if (sum === 0) {
+                result.push([sortedArr[left], sortedArr[right]]);
+                while (left < right && sortedArr[left] === sortedArr[left + 1]) left++;
+                while (left < right && sortedArr[right] === sortedArr[right - 1]) right--;
+                left++;
+                right--;
+            } else if (sum < 0) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return result;
+    }
+}
