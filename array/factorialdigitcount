@@ -1,0 +1,24 @@
+class Solution {
+    factorial(n) {
+        let result = [1];
+        for (let i = 2; i <= n; i++) {
+            this.multiply(i, result);
+        }
+        return result.reverse();
+    }
+    
+    multiply(x, result) {
+        let carry = 0;
+        for (let i = 0; i < result.length; i++) {
+            let product = result[i] * x + carry;
+            result[i] = product % 10;  // Store the single digit at current position
+            carry = Math.floor(product / 10);  // Update carry for the next position
+        }
+        
+        // Handle any remaining carry
+        while (carry > 0) {
+            result.push(carry % 10);
+            carry = Math.floor(carry / 10);
+        }
+    }
+}
