@@ -1,0 +1,19 @@
+let arr = Array.from({length: 3}, () => new Array(4)); //declaring array
+for( let i = 0 ; i<3 ; i++){
+    for(let j = 0 ; j<4 ; j++){ // r0w wise input 
+        const userinput = prompt("please enter");
+        arr[i][j]= userinput;
+    }
+}
+for( let j= 0 ; j<3 ; j++){
+    for(let j = 0 ; j<4 ; j++){ ///col wise input
+        const userinput = prompt("please enter");
+        arr[i][j]= userinput;
+    }
+}
+
+for( let i = 0 ; i<3 ; i++){
+    for(let j = 0 ; j<4 ; j++){
+     console.log(userinput);
+}
+}
