@@ -1,4 +1,9 @@
 let arr = Array.from({length: 3}, () => new Array(4)); //declaring array
+//initialize a matrix
+let arr1 = [[1,2,3],
+[4,5,6],
+[7,8,9]
+]
 for( let i = 0 ; i<3 ; i++){
     for(let j = 0 ; j<4 ; j++){ // r0w wise input 
         const userinput = prompt("please enter");
@@ -17,3 +22,71 @@ for( let i = 0 ; i<3 ; i++){
      console.log(userinput);
 }
 }
+//linear search in an array
+function ispresent({arr , newinput , i , j}){
+    for(let i = 0 ; i<3 ; i++){
+        for(let j =  0; j <4 ; j++){
+            if(arr[i][j]=== newinput){
+                return 1
+            }
+        }
+        return 0 ;
+    }
+
+}
+const newinput = prompt("enter the input to search");
+arr[i][j]= newinput;
+if(ispresent(arr,newinput)){
+    console.log("element found");
+}
+else{
+    console.log("not found");
+}
+// row-wise sum problem 
+function printsum ({arr ,i , j}){
+    for(let i = 0 ; i<3;i++){
+        let sum = 0;
+        for(let j = 0 ; j<4 ; j++){
+            sum += arr[i][j];
+        }
+        console.log(sum);
+    }
+}
+//col wise sum prpblem 
+function printsum ({arr ,i , j}){
+    for(let j= 0 ; j<3;j++){
+        let sum = 0; //col pe jate ho or us col ke andr jitni bhi rows 
+        // aati hai vo sb print kradete ho
+        for(let i= 0 ; i<4 ; i++){
+            sum += arr[i][j];
+        }
+        console.log(sum);
+    }
+}
+//largest sum row
+function largestrowsum({arr , i , j}){
+    let max;
+    max = -Infinity;
+    let rowindex;
+    rowindex = -1
+    for(let i = 0 ; i<3 ; i++){
+        let sum = 0 ;
+        for(let j = 0 ; j<4 ; j++){
+           sum += arr[i][j];
+        }
+        if(sum > max){
+            max = sum;
+            rowindex = i 
+        }
+    }
+    console.log("the max sum is",max);
+    return i;
+}
+//waveprint
+if(col%2==0){ 
+//bottomtotop
+for(let i = n-1 ; i>=0 ; i)
+
+//toptobottom
+
+
