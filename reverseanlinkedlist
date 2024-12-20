@@ -1,0 +1,28 @@
+var reverseList = function(head) {
+        if(head === null){
+            console.log("list is empty");
+            return null;
+        }
+        let current = head;
+        let previous = null;
+        let next = null;
+        while(current!== null){
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        head = previous;
+     
+       current = head;
+       const output = [];
+       while(current !== null){
+        output.push(current.val);
+        console.log(current.val);
+        current = current.next;
+       }
+       console.log(output);
+       return head;
+    };
+
+    
